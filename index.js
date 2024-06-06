@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, push, onValue, remove } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import { getDatabase, ref, set, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const firebaseConfig = {
     databaseURL: "https://realtime-database-d17e9-default-rtdb.firebaseio.com/"
@@ -12,13 +12,13 @@ const inputElement = document.getElementById("endorsement-input")
 const addEndorsementButton = document.getElementById("add-endorsement-button")
 const removeAllEndorsementsButton = document.getElementById("remove-all-endorsements-button")
 
-function addEndorsementToDb(){
+function addEndorsementToDb() {
     const userInput = inputElement.value
-    
+
     push(endorsementReference, userInput)
 }
 
-function removeEndorsements(){
+function removeEndorsements() {
     remove(endorsementReference)
 }
 
@@ -26,12 +26,12 @@ function removeEndorsements(){
 //function runs (we want asynchronous)
 onValue(endorsementReference, (snapshot) => {
     inputElement.value = ""
-    
+
     const ulElement = document.getElementById("endorsement-list")
-    
-    if(snapshot.exists()){
+
+    if (snapshot.exists()) {
         const listItems = Object.values(snapshot.val())
-        
+
         listItems.forEach(item => {
             const newListItem = document.createElement("li")
             newListItem.innerText = item
